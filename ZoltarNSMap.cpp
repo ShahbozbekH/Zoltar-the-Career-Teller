@@ -113,7 +113,7 @@ void NameAndSalary(map<string, int>& jobMap){
 
 }
 
-/* void printResults(vector<Job>& results) {
+void printResults(vector<Job>& results) {
 
     cout << "Top 10 Occupations by Salary:\n";
 
@@ -128,7 +128,7 @@ void NameAndSalary(map<string, int>& jobMap){
     for (int i = results.size() - 1; i > results.size() - 11; i--) {
         cout << results.at(i).jobTitle << ": $" << results.at(i).salary << "\n";
     }
-} */
+}
 
 int main() {
     map<string, int> jobMap;
