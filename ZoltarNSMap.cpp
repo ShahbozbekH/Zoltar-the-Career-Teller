@@ -111,6 +111,24 @@ void NameAndSalary(map<string, int>& jobMap){
     }
 
 }
+
+/* void printResults(vector<Job>& results) {
+
+    cout << "Top 10 Occupations by Salary:\n";
+
+    // Print first 10 results
+    for (int i = 0; i < 10; i++) {
+        cout << results.at(i).jobTitle << ": $" << results.at(i).salary << "\n";
+    }
+
+    cout << "\nBottom 10 Occupations by Salary:\n";
+
+    // Print last 10 results
+    for (int i = results.size() - 1; i > results.size() - 11; i--) {
+        cout << results.at(i).jobTitle << ": $" << results.at(i).salary << "\n";
+    }
+} */
+
 int main() {
     map<string, int> jobMap;
     vector<string> name, salary;
