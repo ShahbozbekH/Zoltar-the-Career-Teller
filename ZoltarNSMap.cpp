@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include <limits>
-#include "SortAlgorithms.cpp";
+#include "SortAlgorithms.cpp"
 
 using namespace std;
 
