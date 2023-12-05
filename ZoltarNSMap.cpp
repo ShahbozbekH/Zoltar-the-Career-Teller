@@ -70,14 +70,18 @@ string IndustryTranslator(string industry){
     }
 
 
-void inCSV(const string& filename, map<string, string>& jobMap, string industry, string state) {
+void inCSV(const string& filename, map<string, int>& jobMap, string industry, string state) {
     ifstream file(filename);
     string line;
-    
+    vector<string> tokens;
+    vector<string> name, salary;
+    if (!file){
+        cout << "File not found" << endl;
+        return;
+    }
     while (getline(file, line)) {
         stringstream ss(line);
         string token;
-        vector<string> tokens;
         while (getline(ss, token, ',')) {
             tokens.push_back(token);
         }
@@ -86,15 +90,20 @@ void inCSV(const string& filename, map<string, string>& jobMap, string industry,
                 JobData job;
                 job.occTitle = tokens[9];
                 job.aMean = tokens[17];
-                jobMap.insert(make_pair(job.occTitle, job.aMean)); 
+                cout << job.occTitle.size() << endl;  
+                cout << job.aMean.size() << endl;
+                cout << "Name of the position: " << job.occTitle << ", Average annual salary: " << job.aMean << endl;
+                jobMap.insert(make_pair(job.occTitle, stoi(job.aMean)));
             }
         }
     }
+    file.close();
 }
 
 
-void NameAndSalary(map<string, string>& jobMap){
-    vector<string> name, salary;
+void NameAndSalary(map<string, int>& jobMap){
+    vector<string> name;
+    vector<int> salary;
     for (auto it = jobMap.begin(); it != jobMap.end(); ++it) {
         name.push_back(it->first);
         salary.push_back(it->second);
@@ -103,7 +112,8 @@ void NameAndSalary(map<string, string>& jobMap){
 
 }
 int main() {
-    map<string, string> jobMap;
+    map<string, int> jobMap;
+    vector<string> name, salary;
 
     int minSalary, maxSalary;
     string industry, state;
@@ -116,14 +126,8 @@ int main() {
     cout << "Enter State (e.g., FL, KY, WA): ";
     cin >> state;
 
-    //cout << "Enter Minimum Salary: ";
-    //cin >> minSalary;
-
-    //cout << "Enter Maximum Salary: ";
-    //cin >> maxSalary;
-    
     inCSV("2022LaborData.csv", jobMap, industry, state);
-    NameAndSalary(jobMap);
+    //NameAndSalary(jobMap);
 
     return 0;
 }
