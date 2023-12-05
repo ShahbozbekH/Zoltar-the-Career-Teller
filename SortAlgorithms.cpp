@@ -1,11 +1,24 @@
 #include<iostream>
 #include<map>
+#include<unordered_map>
 #include<vector>
 #include<string>
 
 using namespace std;
 
-vector<vector<int>> sortJobSalaries(map<string, int>& jobSalaries);
+// struct for keeping job title and salary together
+struct Job {
+	string jobTitle;
+	int salary;
+};
+
+// struct with sorted vectors in both ascending and descending order
+struct sortedSalaries {
+	vector<Job> ascending;
+	vector<Job> descending;
+};
+
+sortedSalaries sortJobSalaries(map<string, int>& jobSalaries);
 
 void mergeSort(vector<int>& salaries, int begin, int end);
 void merge(vector<int>& salaries, int low, int mid, int high);
@@ -14,27 +27,36 @@ void quickSort(vector<int>& salaries, int begin, int end);
 int particionFunction(vector<int>& salaries, int low, int high);
 
 
-// takes in map of jobs and salaries and returns two sorted salary vectors, one in ascending
-// and one in descending order. Use this to output top ten and bottom ten salaries in a 
-// given industry and state. 
-vector<vector<int>> sortJobSalaries(map<string, int>& jobSalaries) {
+// takes in map of jobs and salaries and returns a struct of sorted salaries, one in ascending
+// using merge sort and one in descending using quick sort
+sortedSalaries sortJobSalaries(map<string, int>& jobSalaries) {
 
 	vector<int> salariesAscending;
 	vector<int> salariesDescending;
+	map<int, string> salaryToJobTitle;
 
 	for (auto it = jobSalaries.begin(); it != jobSalaries.end(); it++) {
 		salariesAscending.push_back(it->second);
 		salariesDescending.push_back(it->second);
+		salaryToJobTitle[it->second] = it->first;
 	}
 
 	mergeSort(salariesAscending, 0, int(salariesAscending.size() - 1));
 	quickSort(salariesDescending, 0, int(salariesDescending.size() - 1));
 
-	vector<vector<int>> salariesSorted;
-	salariesSorted.push_back(salariesAscending);
-	salariesSorted.push_back(salariesDescending);
+	sortedSalaries sortedSalaries;
 
-	return salariesSorted;
+	for (int i = 0; i < salariesAscending.size(); i++) {
+		
+		Job topJob = { salaryToJobTitle[salariesAscending[i]], salariesAscending[i] };
+
+		Job lastJob = { salaryToJobTitle[salariesDescending[i]], salariesDescending[i] };
+
+		sortedSalaries.ascending.push_back(topJob);
+		sortedSalaries.descending.push_back(lastJob);		
+	}
+
+	return sortedSalaries;
 }
 
 
@@ -135,4 +157,3 @@ int particionFunction(vector<int>& salaries, int low, int high) {
 
 	return (greater + 1);
 }
-
