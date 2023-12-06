@@ -25,50 +25,7 @@ struct JobData {
     string aPct90;
 };
 
-string IndustryTranslator(string industry) {
-    if (industry == "1")
-        return industry = "11";
-    else if (industry == "2")
-        return industry = "21";
-    else if (industry == "3")
-        return industry = "22";
-    else if (industry == "4")
-        return industry = "23";
-    else if (industry == "5")
-        return industry = "31";
-    else if (industry == "6")
-        return industry = "32";
-    else if (industry == "7")
-        return industry = "33";
-    else if (industry == "8")
-        return industry = "42";
-    else if (industry == "9")
-        return industry = "44";
-    else if (industry == "10")
-        return industry = "45";
-    else if (industry == "11")
-        return industry = "48";
-    else if (industry == "12")
-        return industry = "49";
-    else if (industry == "13")
-        return industry = "51";
-    else if (industry == "14")
-        return industry = "52";
-    else if (industry == "15")
-        return industry = "53";
-    else if (industry == "16")
-        return industry = "54";
-    else if (industry == "17")
-        return industry = "55";
-    else if (industry == "18")
-        return industry = "56";
-    else if (industry == "19")
-        return industry = "61";
-    else if (industry == "20")
-        return industry = "62";
-    else
-        return industry = "0";
-}
+
 
 void inCSV(const string& filename, map<string, int>& jobMap, string industry, string state) {
     ifstream file(filename);
@@ -140,10 +97,31 @@ int main() {
     int minSalary, maxSalary;
     string industry, state;
 
-    cout << "Enter Industry (1-20): ";
+    cout << "Enter occupation category based on the following codes:\n"
+        << "11: Management Occupations:\n"
+        << "13: Business and Financial Operations Occupations:\n"
+        << "15: Computer and mathematical occupations:\n"
+        << "17: Architecture and Engineering Occupations:\n"
+        << "19: Life, Physical, and Social Science Occupations:\n"
+        << "21: Community and Social Service Occupations:\n"
+        << "23: Legal Occupations:\n"
+        << "25: Education, Training, and Library Occupations:\n"
+        << "27: Arts, Design, Entertainment, Sports, and Media Occupations:\n"
+        << "29: Healthcare Practitioners and Technical Occupations:\n"
+        << "31: Healthcare Support Occupations:\n"
+        << "33: Protective Service Occupations:\n"
+        << "35: Food Preparation and Serving Related Occupations:\n"
+        << "37: Building and Grounds Cleaning and Maintenance Occupations:\n"
+        << "39: Personal Care and Service Occupations:\n"
+        << "41: Sales and Related Occupations:\n"
+        << "43: Office and Administrative Support Occupations:\n"
+        << "45: Farming, Fishing, and Forestry Occupations:\n"
+        << "47: Construction and Extraction Occupations:\n"
+        << "49: Installation, Maintenance, and Repair Occupations:\n"
+        << "51: Production Occupations:\n"
+        << "53: Transportation and Material Moving Occupations:\n"
+        << "55: Military Specific Occupations:\n";
     cin >> industry;
-
-    industry = IndustryTranslator(industry); 
 
     cout << "Enter State (e.g., FL, KY, WA): ";
     cin >> state;
