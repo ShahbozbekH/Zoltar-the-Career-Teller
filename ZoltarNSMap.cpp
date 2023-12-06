@@ -121,7 +121,7 @@ int main() {
     vector<Job> ascending = ss.ascending;
     vector<Job> descending = ss.descending;
 
-    cout << "Top 10 Occupations by Salary:\n";
+    cout << "\n\nTop 10 Occupations by Salary:\n";
     printResults(descending);
 
     cout << "\nBottom 10 Occupations by Salary:\n";
