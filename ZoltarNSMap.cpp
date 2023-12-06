@@ -163,5 +163,15 @@ int main() {
 
     inCSV("2022LaborData.csv", jobMap, industry, state);
 
+    sortedSalaries ss = sortJobSalaries(jobMap);
+    vector<Job> ascending = ss.ascending;
+    vector<Job> descending = ss.descending;
+
+    cout << "Top 10 Occupations by Salary:\n";
+    printResults(descending);
+
+    cout << "\nBottom 10 Occupations by Salary:\n";
+    printResults(ascending);
+
     return 0;
 }
