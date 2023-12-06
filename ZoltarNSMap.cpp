@@ -25,7 +25,7 @@ struct JobData {
     string aPct90;
 };
 
-string IndustryTranslator(string industry){
+string IndustryTranslator(string industry) {
     if (industry == "1")
         return industry = "11";
     else if (industry == "2")
@@ -68,7 +68,7 @@ string IndustryTranslator(string industry){
         return industry = "62";
     else
         return industry = "0";
-    }
+}
 
 void inCSV(const string& filename, map<string, int>& jobMap, string industry, string state) {
     ifstream file(filename);
