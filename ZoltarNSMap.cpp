@@ -105,16 +105,7 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
     }
 }
 
-void NameAndSalary(map<string, int>& jobMap){
-    vector<string> name;
-    vector<int> salary;
-    for (auto it = jobMap.begin(); it != jobMap.end(); ++it) {
-        name.push_back(it->first);
-        salary.push_back(it->second);
-        cout << "Name of the position: " << it->first << ", Average annual salary: " << it->second << endl; 
-    }
 
-}
 
 void printResults(vector<Job>& results) {
 
@@ -149,7 +140,6 @@ int main() {
     cin >> state;
 
     inCSV("2022LaborData.csv", jobMap, industry, state);
-    //NameAndSalary(jobMap);
 
     return 0;
 }
