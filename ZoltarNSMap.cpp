@@ -74,7 +74,6 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
     ifstream file(filename);
     string line;
     vector<string> tokens;
-    vector<string> name, salary;
     JobData job;
 
     if (!file){
@@ -91,11 +90,19 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
             tokens.push_back(token);
         }
 
-        cout << tokens[1].substr(0, 2) << endl;
+        string region = tokens[0];
+        string naics = tokens[1];
+        string occupationTitle = tokens[2];
+        string salary = tokens[3];
+
+        cout << "region: " << region
+            << "\nnaics: " << naics
+            << "\noccupationTitle: " << occupationTitle
+            << "\nsalary: " << salary << "\n";
+        /* cout << tokens[1].substr(0, 2) << endl;
         cout << industry << endl;
         cout << tokens[0] << endl;
-        cout << state << endl;
-
+        cout << state << endl; */
         if (tokens[1].substr(0, 2) == industry && tokens[0] == state) {
             JobData job;
             job.occTitle = tokens[2];
@@ -106,6 +113,7 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
             jobMap.insert(make_pair(job.occTitle, stoi(job.aMean)));
             tokens.clear();
         }
+        tokens.clear();
     }
 }
 
