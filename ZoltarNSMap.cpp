@@ -52,27 +52,11 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
         string occupationTitle = tokens[2];
         string salary = tokens[3];
 
-        /* cout << "region: " << region
-            << "\nnaics: " << naics
-            << "\noccupationTitle: " << occupationTitle
-            << "\nsalary: " << salary << "\n"; */
-
-        /* cout << tokens[1].substr(0, 2) << endl;
-        cout << industry << endl;
-        cout << tokens[0] << endl;
-        cout << state << endl; */
-
-        /* cout << "Testing: \n\nindustry: " << industry << "\nstate: " << state
-            << "\ntokens[1].substr(0,2): " << tokens[1].substr(0,2)
-            << "\ntokens[0]: " << tokens[0] << "\n"; */
-
         if (tokens[1].substr(0, 2) == industry && tokens[0] == state) {
             JobData job;
             job.occTitle = tokens[2];
             job.aMean = tokens[3];
-            /* cout << job.occTitle.size() << endl;  
-            cout << job.aMean.size() << endl;
-            cout << "Name of the position: " << job.occTitle << ", Average annual salary: " << job.aMean << endl; */
+
             bool processEntry = true;
             for (auto c : job.aMean) {
                 if (!isdigit(c) && c != ',') {
