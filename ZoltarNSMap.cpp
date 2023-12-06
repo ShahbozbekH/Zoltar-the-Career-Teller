@@ -95,37 +95,50 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
         string occupationTitle = tokens[2];
         string salary = tokens[3];
 
-        cout << "region: " << region
+        /* cout << "region: " << region
             << "\nnaics: " << naics
             << "\noccupationTitle: " << occupationTitle
-            << "\nsalary: " << salary << "\n";
+            << "\nsalary: " << salary << "\n"; */
+
         /* cout << tokens[1].substr(0, 2) << endl;
         cout << industry << endl;
         cout << tokens[0] << endl;
         cout << state << endl; */
+
+        /* cout << "Testing: \n\nindustry: " << industry << "\nstate: " << state
+            << "\ntokens[1].substr(0,2): " << tokens[1].substr(0,2)
+            << "\ntokens[0]: " << tokens[0] << "\n"; */
+
         if (tokens[1].substr(0, 2) == industry && tokens[0] == state) {
             JobData job;
             job.occTitle = tokens[2];
             job.aMean = tokens[3];
-            cout << job.occTitle.size() << endl;  
+            /* cout << job.occTitle.size() << endl;  
             cout << job.aMean.size() << endl;
-            cout << "Name of the position: " << job.occTitle << ", Average annual salary: " << job.aMean << endl;
-            jobMap.insert(make_pair(job.occTitle, stoi(job.aMean)));
-            tokens.clear();
+            cout << "Name of the position: " << job.occTitle << ", Average annual salary: " << job.aMean << endl; */
+            bool processEntry = true;
+            for (auto c : job.aMean) {
+                if (!isdigit(c) && c != ',') {
+                    processEntry = false; 
+                }
+            }
+            if (processEntry) {
+                jobMap.insert(make_pair(job.occTitle, stoi(job.aMean)));
+                tokens.clear();
+            }
         }
+
         tokens.clear();
     }
 }
 
 void printResults(vector<Job>& results) {
-    cout << "Top 10 Occupations by Salary:\n";
 
     // Print first 10 results
     for (int i = 0; i < 10; i++) {
         cout << results.at(i).jobTitle << ": $" << results.at(i).salary << "\n";
     }
 
-    cout << "\nBottom 10 Occupations by Salary:\n";
 
     // Print last 10 results
     for (int i = results.size() - 1; i > results.size() - 11; i--) {
