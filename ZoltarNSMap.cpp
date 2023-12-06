@@ -70,45 +70,46 @@ string IndustryTranslator(string industry){
         return industry = "0";
     }
 
-
 void inCSV(const string& filename, map<string, int>& jobMap, string industry, string state) {
     ifstream file(filename);
     string line;
     vector<string> tokens;
     vector<string> name, salary;
     JobData job;
+
     if (!file){
         cout << "File not found" << endl;
         return;
     }
+
     getline(file, line);
     while (getline(file, line)) {
         stringstream ss(line);
         string token;
+
         while (getline(ss, token, '/')) {
             tokens.push_back(token);
         }
+
         cout << tokens[1].substr(0, 2) << endl;
         cout << industry << endl;
         cout << tokens[0] << endl;
         cout << state << endl;
-            if (tokens[1].substr(0, 2) == industry && tokens[0] == state){
-                    JobData job;
-                    job.occTitle = tokens[2];
-                    job.aMean = tokens[3];
-                    cout << job.occTitle.size() << endl;  
-                    cout << job.aMean.size() << endl;
-                    cout << "Name of the position: " << job.occTitle << ", Average annual salary: " << job.aMean << endl;
-                    jobMap.insert(make_pair(job.occTitle, stoi(job.aMean)));
-                    tokens.clear();
+
+        if (tokens[1].substr(0, 2) == industry && tokens[0] == state) {
+            JobData job;
+            job.occTitle = tokens[2];
+            job.aMean = tokens[3];
+            cout << job.occTitle.size() << endl;  
+            cout << job.aMean.size() << endl;
+            cout << "Name of the position: " << job.occTitle << ", Average annual salary: " << job.aMean << endl;
+            jobMap.insert(make_pair(job.occTitle, stoi(job.aMean)));
+            tokens.clear();
         }
     }
 }
 
-
-
 void printResults(vector<Job>& results) {
-
     cout << "Top 10 Occupations by Salary:\n";
 
     // Print first 10 results
