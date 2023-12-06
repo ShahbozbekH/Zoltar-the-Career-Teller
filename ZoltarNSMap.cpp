@@ -91,7 +91,7 @@ void inCSV(const string& filename, map<string, int>& jobMap, string industry, st
 
 void printResults(vector<Job>& results) {
     for (int i = 0; i < 10; i++) {
-        cout << results.at(i).jobTitle << ": $" << results.at(i).salary << "\n";
+        cout << results.at(i).jobTitle << ": $" << results.at(i).salary << ",000\n";
     }
 }
 
